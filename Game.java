@@ -20,10 +20,9 @@ import javax.swing.JPanel;
  */
 public class Game extends JPanel implements KeyListener, Runnable {
     
-    private static final long serialVersionUID = 1L;
-    public static final int WIDTH = 400;
-    public static final int HEIGHT = 630;
-    public static final Font main = new Font("Bebas Neue Regular", Font.PLAIN, 28);
+    public static final int WIDTH = 500;
+    public static final int HEIGHT = 560;
+    public static final Font main = new Font("", Font.PLAIN, 28);
     private Thread game;
     private boolean running;
     private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -48,7 +47,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
     }
     private void render(){
         Graphics2D g = (Graphics2D) image.getGraphics();
-        g.setColor(Color.white);
+        g.setColor(Color.WHITE);
         g.fillRect(0, 0, WIDTH, HEIGHT); //render board
         board.render(g);
         g.dispose();
@@ -76,9 +75,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
 
     @Override
     public void run() {
-
-        int fps = 0, updates = 0;
-        long fpsTimer = System.currentTimeMillis();
+        int updates = 0;
         double nsPerUpdate = 1000000000.0 / 60;
         
         // last update time in nanoseconds
@@ -100,7 +97,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
 
             //render
             if(shouldRender){
-                fps++;
+                
                 render();
                 shouldRender = false;
             }
@@ -112,14 +109,7 @@ public class Game extends JPanel implements KeyListener, Runnable {
                 }
             }
         }
-        // FPS Timer
-        if(System.currentTimeMillis() - fpsTimer > 1000){
-            System.out.printf("%d fps %d updates", fps, updates);
-            System.out.println();
-            fps = 0;
-            updates = 0;
-            fpsTimer += 1000;
-        }
+        
     }
     
     public synchronized void start(){
