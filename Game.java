@@ -43,12 +43,6 @@ public class Game extends JPanel implements KeyListener, Runnable {
     
     private void update(){
         board.update();
-        if(Keyboard.pressed[KeyEvent.VK_SPACE]){
-            System.out.println("Hit space");
-        }
-        if(Keyboard.typed(KeyEvent.VK_RIGHT)){
-            System.out.println("Hit RIGHT");
-        }
         Keyboard.update();
         
     }

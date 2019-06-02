@@ -26,8 +26,13 @@ public class Tile {
     private Color background;
     private Color text;
     private Font font;
+    private Point slideTo;
+
     private int x;
     private int y;
+    
+    private boolean canCombine;
+
     
     public Tile(int value, int x, int y){
         this.value = value;
@@ -101,8 +106,35 @@ public class Tile {
         g.setFont(font);
         
         int drawX = WIDTH / 2 - DrawUtils.getMessageWidth("" + value, font, g) / 2;
-        int drawY = HEIGHT / 2 - DrawUtils.getMessageHeight("" + value, font, g) / 2;
+        int drawY = HEIGHT / 2 + DrawUtils.getMessageHeight("" + value, font, g) / 2;
         g.drawString("" + value, drawX, drawY);
         g.dispose();
-    }   
+    }
+    public void update(){
+        
+    }
+    public void render(Graphics2D g){
+        g.drawImage(tileImage, x, y, null);
+    }
+    
+    public int getValue(){
+        return value;
+    }
+    public void setValue(int value){
+        this.value = value;
+    }
+        public Point getSlideTo() {
+        return slideTo;
+    }
+
+    public void setSlideTo(Point slideTo) {
+        this.slideTo = slideTo;
+    }
+    public boolean canCombine() {
+        return canCombine;
+    }
+
+    public void setCanCombine(boolean canCombine) {
+        this.canCombine = canCombine;
+    }
 }
